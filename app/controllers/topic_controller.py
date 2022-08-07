@@ -64,5 +64,5 @@ def get_topic(id, user, *args, **kwargs):
 @app.route('/topic/my')
 @jwt_required
 def get_my_topics(user, *args, **kwargs):
-
+    
     return jsonify(TopicModel.filter_all_by({'users_id': user.id}, jsonify=True)), 200

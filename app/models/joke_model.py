@@ -1,6 +1,6 @@
 from app import app
 from app.models.base_models import BaseModel
-from flask_app.app.models.connector import MySQLConnection 
+from app.models.connector import MySQLConnection 
 
 class JokeModel(BaseModel):
 

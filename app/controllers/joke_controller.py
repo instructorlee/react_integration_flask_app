@@ -3,7 +3,7 @@ from app import app
 
 from app.decorators import jwt_required
 from app.models.joke_model import JokeModel
-from flask_app.app.models.topic_model import TopicModel
+from app.models.topic_model import TopicModel
 
 @app.route('/joke/add', methods=['POST'])
 @jwt_required

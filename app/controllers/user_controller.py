@@ -15,7 +15,6 @@ def get_user_object(user):
 
 @app.route('/user/register', methods=['POST'])
 def register():
-
     user_data = request.get_json()
 
     registration_errors = UserModel.validate_registration_data(user_data)
@@ -61,7 +60,6 @@ def logout():
 @jwt_required
 def get_current_user(user, *args, **kwargs): 
     # called when user reloads the app. Their TOKENS are good, just need to get the up-to-date user data
-
     return jsonify(get_user_object(user)) , 200
 
 @app.route('/user/refresh-token', methods=['POST'])

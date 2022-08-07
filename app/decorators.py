@@ -16,9 +16,14 @@ def jwt_required(function):
             # headers = {'Content-Type': 'application/json'}
             return jsonify({'message' : 'Token is invalid!'}), 401
         
+        try:
+            data = request.get_json()
+        except:
+            data = None
+
         return function(
             user = user,
-            data = request.get_json(),
+            data=data,
             *args, 
             **kwargs) #keep this out of TRY block to prevent hiding errors from function
 
