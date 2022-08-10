@@ -5,14 +5,15 @@ import jwt
 
 from .models.user_model import UserModel
 
-def jwt_required(function):
+def jwt_required(function): # original function is passed in
     @wraps(function)
     def wrap(*args, **kwargs):
-        try:
+        try: # check if token was sent
             token = request.headers.get('Authorization')
-            data = jwt.decode(token, os.getenv('JWT_SECRET'), algorithms="HS256")
-            user = UserModel.get_by_id(data['sub'])
-        except Exception as e:
+            data = jwt.decode(token, os.getenv('JWT_SECRET'), algorithms="HS256") # decodes token 
+            user = UserModel.get_by_id(data['sub']) # get user
+
+        except Exception as e: # maybe no token or no user found
             # headers = {'Content-Type': 'application/json'}
             return jsonify({'message' : 'Token is invalid!'}), 401
         

@@ -47,7 +47,6 @@ def login():
     auth_manager = AuthManager(app)
     return jsonify({
             'auth_token':auth_manager.auth_token(user.id, {}).signed,
-            'refresh_token': auth_manager.refresh_token(user.id).signed,
             'user': user.to_json()
         }) , 200
 

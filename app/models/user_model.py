@@ -26,7 +26,6 @@ class UserModel(BaseModel):
 
     @classmethod
     def get_by_email(cls, email):
-        t = cls.filter_one_by({'email': email})
         return cls.filter_one_by({'email': email})
 
     @classmethod

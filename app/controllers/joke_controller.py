@@ -9,12 +9,11 @@ from app.models.topic_model import TopicModel
 @jwt_required
 def add_joke(user, data):
 
-    if JokeModel.is_valid(data):
-        if 'topics_id' in data and data['topics_id'] != '':
-
-            topic = TopicModel.get_by_id(data['topics_id'])
+    if JokeModel.is_valid(data) and'topic_id' in data and data['topic_id'] != '':
+            topic = TopicModel.get_by_id(data['topic_id'])
 
             if topic is not None and topic.user.id == user.id:
+                data['topics_id'] = data['topic_id'] # needed to make front end compatiable with both backends.
                 new_item = JokeModel.add(user, data)
 
                 if new_item is not None:
@@ -38,7 +37,7 @@ def update_joke(user, data):
         
     return jsonify({}), 422
 
-@app.route('/joke/delete/<id>')
+@app.route('/joke/delete/<id>', methods=['DELETE'])
 @jwt_required
 def delete_joke(id, user, *args, **kwargs):
 

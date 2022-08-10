@@ -12,7 +12,7 @@ def add_topic(user, data):
         new_topic = TopicModel.add(user, data)
 
         if new_topic is not None:
-            return jsonify(new_topic.to_json()), 200
+            return jsonify(new_topic.to_json()), 201 # always return new and updated objects
         
     return jsonify({}), 422
 
@@ -43,7 +43,7 @@ def delete_topic(id, user, *args, **kwargs):
 
     if topic is not None:
         TopicModel.delete(id)
-        return jsonify({'status': 'ok'}), 201
+        return jsonify({'status': 'ok'}), 200
 
     return jsonify({}), 422
 

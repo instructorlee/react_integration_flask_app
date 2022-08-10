@@ -11,11 +11,12 @@ class BaseModel:
     basic_select = "*"
     basic_joins = ""
 
-    def __init__(self, data):
+    def __init__(self, data): # auto populates the instance with the data. 
         
         for key in data:
             setattr(self, key, data[key])
     
+    # during this process, we have control over exactly what data is exposed to the API.
     def to_json(self, add_fields=[], fields=[]): # fields will replace default fields
 
         fields = fields if len(fields) > 0 else self.json_fields
