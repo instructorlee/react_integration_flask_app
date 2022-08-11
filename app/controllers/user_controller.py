@@ -52,7 +52,6 @@ def login():
 
 @app.route('/user/logout')
 def logout():
-    session.clear()
     return jsonify ({}), 200
 
 @app.route('/user/current-user')
